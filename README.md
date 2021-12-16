@@ -1,13 +1,19 @@
-# vega_mysql
-MySQL를 사용하기 위한 라이브러리
+# vega-lib
+### 의존성
+```
+    'PyMySQL >= 1.0.2',
+    'sshtunnel >= 0.4.0',
+    'pytz >= 2021.3',
+    'python-dateutil >= 2.8.2',
+    'psutil >= 5.8.0',
+    'slack-sdk >= 3.11.2',
+    'beautifulsoup4 >= 4.10.0',
+    'selenium >= 4.0.0'
+```
 
-    * 의존성:
-        - python 3.8.10 이상
-        - PyMySQL 1.0.2 이상
-        - sshtunnel 0.4.0 이상
 
-------------------
 ### 사용법
+    > mysql
 ```
     # install
         $  pip install git+ssh://git@github.com/jinland-bommaru/vega_mysql.git
