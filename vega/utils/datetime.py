@@ -10,7 +10,7 @@ from dateutil.relativedelta import relativedelta
 # ----------------------------------------------------
 # User define library import area
 # ----------------------------------------------------
-from vega_utils.string import StringHandle as sh
+from .string import StringHandle as sh
 
 
 class DatetimeHandleError(Exception):
