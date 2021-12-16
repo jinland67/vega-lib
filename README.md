@@ -36,7 +36,7 @@
             user="connect user id",
             passwd="user passwd",
             database="database name"
-            charset="utf8'
+            charset="database character set [default utf8]'
                 :
         )
                 :
@@ -44,7 +44,7 @@
         conn = mysql.connect()
                 :
         # mysql close connect
-        mysql.disconnect()
+        mysql.close()
 
     # Tunneling connect with ssh key
         from vega.database.mysql import MySQL, MySQLError
@@ -55,11 +55,11 @@
             ssh_port="tunneling port [default 22]",
             ssh_key="~/.ssh/<key-file>.pem",
             host="ip-address or dns",
-            port=port number,
+            port=port number [default 3306],
             user="connect user id",
             passwd="user passwd",
             database="database name"
-            charset="utf8'
+            charset="database character set [default utf8]'
         )
 
     # Tunneling connect with ssh user password
@@ -71,11 +71,25 @@
             ssh_port="tunneling port [default 22]",
             ssh_="ssh user password",
             host="ip-address or dns",
-            port=port number,
+            port=port number [default 3306],
             user="connect user id",
             passwd="user passwd",
             database="database name"
-            charset="utf8'
+            charset="database character set [default utf8]'
         )
+
+    # connect & close to database
+        # connect
+        conn = mysql.connect()
+                :
+        # close
+        mysql.close()
+
+    # example
+        conn = mysql.connect()
+        query = " SELECT * FROM sample_table; "
+        result = mysql.fetchone(query)
+        print(result)
+        mysql.close()
 ```
 
