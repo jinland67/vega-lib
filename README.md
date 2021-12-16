@@ -24,7 +24,7 @@
 ```
 
 ### Usagae
-> mysql
+- mysql
 ```
     # Non tunneling connect
         from vega.database.mysql import MySQL, MySQLError
