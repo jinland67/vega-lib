@@ -1,5 +1,5 @@
 # vega-lib
-### 의존성
+### Dependancy
 ```
     'PyMySQL >= 1.0.2',
     'sshtunnel >= 0.4.0',
@@ -12,19 +12,27 @@
 ```
 
 
-### 사용법
+### Install
+```
+    # Download and install with git clone
+        $ git clone https://github.com/jinland67/vega-lib.git
+        $ cd vega-lib
+        $ python setup.py install
+
+    # Installing directly with pip
+        $ pip install git+https://github.com/jinland67/vega-lib.git
+```
+
+### Usagae
     > mysql
 ```
-    # install
-        $  pip install git+ssh://git@github.com/jinland-bommaru/vega_mysql.git
-
-    # chromedriver 사용 시
-        from vega_mysql import MySQL, MySQLError
-                :
-                :
+    # Non tunneling connect
+        from vega.database.mysql import MySQL, MySQLError
+                    :
+                    :
         mysql = MySQL(
             host="ip-address or dns",
-            port=port number,
+            port=port number [default 3306],
             user="connect user id",
             passwd="user passwd",
             database="database name"
@@ -32,65 +40,42 @@
                 :
         )
                 :
-        # mysql 접속
+        # mysql connect
         conn = mysql.connect()
                 :
-        # mysql 접속 해제
+        # mysql close connect
         mysql.disconnect()
 
-    [참고]
-    conn = mysql.connect()를 통해서 mysql driver를 획득했을 경우 driver는 PyMySQL의 모든 메소드를 사용할 수 있다.
+    # Tunneling connect with ssh key
+        from vega.database.mysql import MySQL, MySQLError
+                        :
+                        :
+        mysql = MySQL(
+            ssh_host="tunneling ip or dns",
+            ssh_port="tunneling port [default 22]",
+            ssh_key="~/.ssh/<key-file>.pem",
+            host="ip-address or dns",
+            port=port number,
+            user="connect user id",
+            passwd="user passwd",
+            database="database name"
+            charset="utf8'
+        )
 
-```
-
-------------------
-### ARG 정의
-```
-    # tunneling
-        - 형식: Boolean
-        - 설명: mysql 접속을 tunneling을 통해 할 것인가 선택. 기본값 False
-    # host
-        - 형식: string
-        - 설명: database가 위한한 서버의 ip-addr 또는 DNS로 필수입력값
-    # port
-        - 형식: int
-        - 설명: database port. 기본값 3306
-    # user
-        - 형식: string
-        - 설명: database user id. 필수입력값
-    # passwd
-        - 형식: string
-        - 설명: database user password. 필수입력값
-    # database
-        - 형식: string
-        - 설명: 데이타베이스명. 필수 입력값
-    # charset
-        - 형식: string
-        - 설명: database의 글자 형식 지정. 기본값 utf8
-    # ssh_host
-        - 형식: string
-        - 설명: ssh tunneling을 위한 서버 ip-addr 또는 DNS. tunneling이 True이면 필수 입력값
-    # ssh_port
-        - 형식: int
-        - 설명: ssh tunneling을 위한 포토번호. 기본값 22
-    # ssh_user
-        - 형식: string
-        - 설명: tunneling 접속을 위한 사용자 아이디.
-    # ssh_passwd
-        - 형식: string
-        - 설명: tunneling user의 비밀번호
-    # ssh_key
-        - 형식: string
-        - 설명: 공개키를 사용한다면 그 키의 경로
-    [주의]
-        tunneling 시 ssh_passwd와 ssh_key값은 하나만 존재해야 한다.
+    # Tunneling connect with ssh user password
+        from vega.database.mysql import MySQL, MySQLError
+                        :
+                        :
+        mysql = MySQL(
+            ssh_host="tunneling ip or dns",
+            ssh_port="tunneling port [default 22]",
+            ssh_="ssh user password",
+            host="ip-address or dns",
+            port=port number,
+            user="connect user id",
+            passwd="user passwd",
+            database="database name"
+            charset="utf8'
+        )
 ```
 
-------------------
-### method 정의
-```
-    # connect()
-      database에 접속을 위한 메소드
-    # close()
-      database 접속 해제를 위한 메소드
-```
