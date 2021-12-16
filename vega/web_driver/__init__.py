@@ -1,3 +1,3 @@
-from .web_driver import WebDriver, WebDriverError
+from .selenium import WebDriver, WebDriverError
 
 __all__ = ['WebDriver', 'WebDriverError']
